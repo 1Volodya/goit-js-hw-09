@@ -8,6 +8,7 @@ const startButton = document.querySelector('[data-start]');
 const stopButton = document.querySelector('[data-stop]');
 const body = document.body;
 
+stopButton.style.cursor = 'default';
 
 let intervalId = null;
 stopButton.disabled = true;
@@ -23,14 +24,18 @@ function onStartClick() {
         body.style.backgroundColor = getRandomHexColor();
     }, 1000);
     startButton.disabled = true;
-    stopButton.disabled = false;
+  stopButton.disabled = false;
+  startButton.style.cursor = 'default';
+  stopButton.style.cursor = 'pointer'
 };
 
 function onStopClick() {
     clearInterval(intervalId);
     intervalId = null;
     startButton.disabled = false;
-    stopButton.disabled = true;
+  stopButton.disabled = true;
+  stopButton.style.cursor = 'default';
+  startButton.style.cursor = 'pointer';
 }
 
 
