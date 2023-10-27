@@ -16,8 +16,10 @@ flatpickr(datetimePicker, {
   minuteIncrement: 1,
   onClose(selectedDates) {
     const selectedDate = selectedDates[0];
-    if (selectedDate < new Date()) {
-      Notify.failure('Please choose a date in the future');
+    const currentDate = new Date();
+
+    if (selectedDate <= currentDate) {
+      Notify.failure('Please choose a future date');
       startButton.disabled = true;
       startButton.style.pointerEvents = 'none';
     } else {
@@ -64,7 +66,7 @@ startButton.addEventListener('click', () => {
 });
 
 function addLeadingZero(value) {
-  return value < 10 ? `0${value}` : value;
+  return String(value).padStart(2, '0');
 }
 
 function convertMs(ms) {
